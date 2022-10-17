@@ -1,0 +1,66 @@
+---
+import { Sprite } from 'astro-icon'
+import site from '../data/site.js'
+import type { Link } from '../types.js'
+
+const links: Link[] = [
+    {
+        href: 'https://docs.astro.build/en/concepts/why-astro/',
+        text: 'Why Astro?'
+    },
+    {
+        href: 'https://docs.astro.build/',
+        text: 'Documentation'
+    },
+    {
+        href: '/blog',
+        text: 'Blog'
+    },
+    {
+        href: '/press',
+        text: 'Press'
+    },
+    {
+        href: '/privacy',
+        text: 'Privacy Policy'
+    },
+    {
+        href: 'https://astro.build/company/',
+        text: "The Astro Technology Company (We're Hiring!)"
+    },
+]
+
+const today = new Date()
+---
+
+<footer class="bg-neutral-900">
+    <div class="max-w-7xl mx-auto py-12 px-4 overflow-hidden sm:px-6 lg:px-8">
+        <nav
+            class="-mx-5 -my-2 flex flex-wrap justify-center"
+            aria-label="Footer"
+        >
+            {links.map(({ href, text }) => (
+                <div class="px-5 py-2 text-center">
+                    <a
+                        href={href}
+                        class="text-base text-neutral-300 hover:text-neutral-100 hover:underline"
+                    >
+                        {text}
+                    </a>
+                </div>
+            ))}
+        </nav>
+        <div class="mt-8 flex justify-center space-x-6">
+            {site.socialLinks.map(({ href, text, pack, name }) => (
+                <a
+                    href={href}
+                    title={text}
+                    class="text-neutral-300 hover:text-neutral-100"
+                >
+                    <span class="sr-only">{text}</span>
+                    <Sprite pack={pack} name={name} size={24} aria-hidden="true" />
+                </a>
+            ))}
+        </div>
+    </div>
+</footer>

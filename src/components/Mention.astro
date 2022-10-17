@@ -1,0 +1,21 @@
+---
+import { getAuthor } from '../data/authors';
+import Avatar from './Avatar.astro';
+const { name } = Astro.props;
+
+const mention = await getAuthor(name);
+if (!mention) {
+    throw new Error(`Could not find mentioned user "${name}"!`)
+}
+---
+
+<span class="mention inline-block align-middle leading-none m-0">
+    <a
+        href={mention.twitter}
+        title={`Follow ${mention.name} on Twitter`}
+        class="inline-flex no-underline items-center whitespace-nowrap m-0 font-bold space-x-1"
+    >
+        <Avatar {name} />
+        <span>{mention.name}</span>
+    </a>
+</span>
